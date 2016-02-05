@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
 
 void shellSort(int *a,int n){
 
-    int i,j,gap;
+    int i,j,k,gap;
     for (gap = n / 2; gap > 0; gap = gap / 2) { //步长
         for (i = 0; i < gap; i++) {  //直接插入排序的次数；也就是在每个分组中需要进行几次直接插入排序；
 
@@ -33,13 +33,9 @@ void shellSort(int *a,int n){
 
                     //保存后面的值；
                     int temp = a[j];
-                    int k = j - gap;
-                    //后面的数小，往前面插；
-                    while (k >= 0 && a[k] > temp) {
-
+                    for (k = j - gap; k >= 0 && a[k] > temp; k = k - gap) {
                         //先把前面的数往后移；
                         a[k + gap] = a[k];
-                        k = k - gap;
                     }
                     a[k + gap] = temp;
 
